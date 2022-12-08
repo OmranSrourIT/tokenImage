@@ -10,8 +10,8 @@
     </icon>
     <properties>
         <propertyGroup caption="General">
-            <property key="valueAttribute" type="attribute" required="false">
-                <caption>Value attribute</caption>
+            <property key="imageBmpLive" type="attribute" required="true">
+                <caption>Image bmp Value</caption>
                 <description>The attribute that contains the tokenimage value</description>
                 <attributeTypes>
                     <attributeType name="String"/>
@@ -21,39 +21,41 @@
                     <attributeType name="Long"/>
                 </attributeTypes>
             </property>
-            <property key="tokenimageValue" type="string" required="false">
-                <caption>Default value</caption>
-                <description>The tokenimage value shown when no value is provided via the attribute</description>
+
+            <property key="imageIsoLive" type="attribute" required="true">
+                <caption>Image ISO Value</caption>
+                <description>The attribute that contains the tokenimage value</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                    <attributeType name="Enum"/>
+                    <attributeType name="Integer"/>
+                    <attributeType name="Decimal"/>
+                    <attributeType name="Long"/>
+                </attributeTypes>
             </property>
+            
         </propertyGroup>
-        <propertyGroup caption="Display">
-            <property key="bootstrapStyle" type="enumeration" defaultValue="default">
-                <caption>TokenImage style</caption>
-                <description>The appearance of the tokenimage</description>
-                <enumerationValues>
-                    <enumerationValue key="default">Default</enumerationValue>
-                    <enumerationValue key="primary">Primary</enumerationValue>
-                    <enumerationValue key="success">Success</enumerationValue>
-                    <enumerationValue key="info">Info</enumerationValue>
-                    <enumerationValue key="inverse">Inverse</enumerationValue>
-                    <enumerationValue key="warning">Warning</enumerationValue>
-                    <enumerationValue key="danger">Danger</enumerationValue>
-                </enumerationValues>
-            </property>
-            <property key="tokenimageType" type="enumeration" required="true" defaultValue="badge">
-                <caption>Type</caption>
-                <description>Render it as either a badge or a color label</description>
-                <enumerationValues>
-                    <enumerationValue key="badge">Badge</enumerationValue>
-                    <enumerationValue key="label">Label</enumerationValue>
-                </enumerationValues>
-            </property>
-        </propertyGroup>
+        
         <propertyGroup caption="Events">
-            <property key="onClickAction" type="action" required="false">
-                <caption>On click action</caption>
-                <description>Action to trigger when button / label is clicked</description>
+            <property key="onClickSaveAction" type="action" required="true">
+                <caption>On click Save action</caption>
+                <description>Action to trigger when button Save is clicked</description>
             </property>
+            <property key="onClickCloseAction" type="action" required="true">
+                <caption>On click Close action</caption>
+                <description>Action to trigger when button Close is clicked</description>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Image Configration"> 
+            <property key="ModuleName" type="textTemplate" required="true">
+                <caption>Module Name</caption>
+                <description>The value To path Image from Module Name</description> 
+            </property> 
+
+            <property key="ImageCollection" type="textTemplate" required="true">
+                <caption>ImageCollection Name</caption>
+                <description>The value To path Image from ImageCollection Name</description> 
+            </property> 
         </propertyGroup>
     </properties>
 </widget>
