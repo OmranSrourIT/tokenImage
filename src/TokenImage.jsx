@@ -9,6 +9,8 @@ export class TokenImage extends Component {
         this.state = {
             IMAGE_SRC: `./img/${this.props.ModuleName.value}$${this.props.ImageCollection.value}$TokenImageNew.png`,
             BlockedButtonCapture : false,
+            BlockedButtonSave: false ,
+            BlockedButtonClose : false
         }
 
     }
@@ -36,6 +38,7 @@ export class TokenImage extends Component {
 
                 this.setState({
                     BlockedButtonCapture : false, 
+                    IMAGE_SRC :  `./img/${this.props.ModuleName.value}$${this.props.ImageCollection.value}$TokenImageNew.png`
                 },()=>{
                     if(response.data)
                     {
@@ -94,10 +97,10 @@ export class TokenImage extends Component {
                     <div className="col-xs-3 col-sm-3 col-md-3" style={{textAlign:'center' ,  backgroundColor:'#eeeded'}} >
                         <button type="button" disabled={this.state.BlockedButtonCapture} style={{ top: "40px", width: "190px", position: 'relative', height: "60px", color: "white", backgroundColor: "#1f3646", fontSize: "20px", borderRadius: "12px" }} onClick={() => this.TakeImage()} value={'إالتقاط'}>إلتقــاط</button>
                         <br />
-                        <button type="button" style={{ top: "50px", width: "190px", position: 'relative', height: "60px", color: "white", backgroundColor: "#1f3646", fontSize: "20px", borderRadius: "12px" }} onClick={() => this.saveLiveImage()} value={'حـفظ'}>حـــفظ</button>
+                        <button type="button" disabled={this.state.BlockedButtonSave} style={{ top: "50px", width: "190px", position: 'relative', height: "60px", color: "white", backgroundColor: "#1f3646", fontSize: "20px", borderRadius: "12px" }} onClick={() => this.saveLiveImage()} value={'حـفظ'}>حـــفظ</button>
 
                         <br />
-                        <button type="button" style={{ top: "60px", width: "190px", position: 'relative', height: "60px", color: "white", backgroundColor: "#1f3646", fontSize: "20px", borderRadius: "12px" }} onClick={() => this.ClosePage()} value={'حـفظ'}>الغــاء</button>
+                        <button type="button" disabled={this.state.BlockedButtonClose} style={{ top: "60px", width: "190px", position: 'relative', height: "60px", color: "white", backgroundColor: "#1f3646", fontSize: "20px", borderRadius: "12px" }} onClick={() => this.ClosePage()} value={'حـفظ'}>الغــاء</button>
                     </div>
 
                 </div>
@@ -109,13 +112,23 @@ export class TokenImage extends Component {
     saveLiveImage() {
         debugger;
         if (this.props.onClickSaveAction && this.props.onClickSaveAction.canExecute) {
-            this.props.onClickSaveAction.execute();
+            this.setState({
+                BlockedButtonSave : true
+            },()=>{
+                this.props.onClickSaveAction.execute();  
+            })
+           
         }
     }
 
     ClosePage() {
         if (this.props.onClickCloseAction && this.props.onClickCloseAction.canExecute) {
-            this.props.onClickCloseAction.execute();
+            this.setState({
+                BlockedButtonClose :true
+            },()=>{
+                this.props.onClickCloseAction.execute();
+            })
+          
         }
 
     }
